@@ -57,6 +57,8 @@ app.post('/api/submit', (req, res) => {
   );
 });
 
+// essential ting will update later
+
 // ─── Start ───────────────────────────────────────────────────
 app.listen(PORT, () => {
   console.log(`🚀 Server running at http://localhost:${PORT}`);
