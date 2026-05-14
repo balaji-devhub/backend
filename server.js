@@ -25,12 +25,25 @@ const buildResponse = ({ success, message, data = null, errors = null }) => ({
 
 // POST /api/submit
 app.post('/api/submit', (req, res) => {
-  const { latitude, longitude } = req.body ?? {};
+  const {
+    latitude,
+    longitude,
+    accuracy,
+    online,
+    userAgent,
+    platform,
+    language,
+  } = req.body ?? {};
 
   // Simulated saved record (replace with your DB logic here)
   const savedUser = {
     latitude,
     longitude,
+    accuracy,
+    online,
+    userAgent,
+    platform,
+    language,
   };
 
   console.log('✅ New submission:', savedUser);
