@@ -1,84 +1,87 @@
-# user-form-backend
+# User Form Backend
 
 Simple Node.js (ESM) Express backend for the user form submission app.
 
-## Setup
+---
+
+# Features
+
+- Express.js backend using ES Modules
+- REST API endpoint for form submission
+- Easy local development setup
+- Supports frontend hosted separately
+- Works with ngrok port forwarding for public access
+
+---
+
+# Requirements
+
+- Node.js v18+ recommended
+- npm
+
+---
+
+# Installation
+
+Clone the project and install dependencies:
 
 ```bash
 npm install
+```
+
+---
+
+# Running the Server
+
+Start the backend server:
+
+```bash
 npm start
-# or for auto-restart on file changes:
+```
+
+For development with auto-restart on file changes:
+
+```bash
 npm run dev
 ```
 
-Server runs at: http://localhost:3000
+Server runs at:
 
----
-
-## Endpoint
-
-### POST /api/submit
-
-**Request body (JSON):**
-```json
-{
-  "name": "Jane Doe",
-  "email": "jane@example.com",
-  "description": "A short description about me."
-}
-```
-
-**Success Response (201):**
-```json
-{
-  "success": true,
-  "message": "User submitted successfully.",
-  "data": {
-    "id": "usr_abc12345",
-    "name": "Jane Doe",
-    "email": "jane@example.com",
-    "description": "A short description about me.",
-    "created_at": "2026-05-15T10:00:00.000Z"
-  },
-  "meta": {
-    "path": "/api/submit",
-    "method": "POST",
-    "timestamp": "2026-05-15T10:00:00.000Z"
-  }
-}
-```
-
-**Validation Error Response (400):**
-```json
-{
-  "success": false,
-  "message": "Validation failed. Please fix the errors below.",
-  "errors": [
-    { "field": "email", "message": "A valid email address is required." }
-  ],
-  "meta": {
-    "path": "/api/submit",
-    "method": "POST",
-    "timestamp": "2026-05-15T10:00:00.000Z"
-  }
-}
+```txt
+http://localhost:3000
 ```
 
 ---
 
-## Files
+# API Endpoint
 
-| File | Purpose |
-|------|---------|
-| `server.js` | Main Express app (ESM) |
-| `package.json` | `"type": "module"` config + deps |
-| `.gitignore` | Ignores node_modules & .env |
+## POST `/api/submit`
 
----
+Backend endpoint:
 
-## Connect to the HTML form
+```txt
+http://localhost:3000/api/submit
+```
 
-In `user-form.html`, update:
+Example frontend usage:
+
 ```js
 const API_ENDPOINT = "http://localhost:3000/api/submit";
+
+async function submitForm(data) {
+  const response = await fetch(API_ENDPOINT, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(data),
+  });
+
+  const result = await response.json();
+  console.log(result);
+}
 ```
+
+---
+
+#
